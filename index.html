@@ -306,7 +306,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);}
       <table class="ci-table" id="r-info"></table>
     </div>
   </div>
-  <div class="gia-logo-bar"><img src="GreenIndustrialAreas_Logo-Standard.svg" alt="Green Industrial Areas"></div>
+  <div class="gia-logo-bar"><img src="GreenIndustrialAreas_Logo-Standard-large.png" alt="Green Industrial Areas"></div>
   </div><!-- /pdf-p1 -->
 
   <div id="pdf-p1-b">
@@ -778,6 +778,8 @@ function rRD(){
 async function downloadPDF(){
   const btn=document.getElementById('btnPDF');
   btn.disabled=true;btn.textContent='Generating…';
+  const actions=document.querySelector('.rep-actions');
+  if(actions)actions.style.visibility='hidden';
   try{
     const {jsPDF}=window.jspdf;
     const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
@@ -785,16 +787,17 @@ async function downloadPDF(){
     const pageIds=['pdf-p1','pdf-p1-b','pdf-p2','pdf-p3'];
     for(let i=0;i<pageIds.length;i++){
       const el=document.getElementById(pageIds[i]);
-      const canvas=await html2canvas(el,{scale:2,useCORS:true,backgroundColor:'#EEF0F5',logging:false});
+      const canvas=await html2canvas(el,{scale:3,useCORS:true,backgroundColor:'#ffffff',logging:false});
       const imgData=canvas.toDataURL('image/png');
       const imgW=pgW;
       const imgH=(canvas.height*pgW)/canvas.width;
       if(i>0)pdf.addPage();
-      pdf.addImage(imgData,'PNG',0,0,imgW,imgH,undefined,'FAST');
+      pdf.addImage(imgData,'PNG',0,0,imgW,imgH,undefined,'NONE');
     }
     const org=document.getElementById('f-org').value.trim()||'report';
     pdf.save(`green-screening-${org.replace(/\s+/g,'-').toLowerCase()}.pdf`);
   }finally{
+    if(actions)actions.style.visibility='visible';
     btn.disabled=false;btn.textContent='⬇ Download PDF';
   }
 }
