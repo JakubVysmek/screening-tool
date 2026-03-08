@@ -230,7 +230,6 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 
 </div>
 <div class="step-prog"><div class="step-prog-fill" id="stepFg" style="width:20%"></div></div>
-<div class="sec-status" id="secStatus"></div>
 
 <div class="wiz-body">
   <!-- STEP 1 -->
@@ -555,12 +554,6 @@ function countGroup(g){return Object.values(ans[g]).filter(v=>v!=null).length;}
 function updProgress(){
   saveToStorage();
   const vd=countGroup('vpi'),id=countGroup('ie'),od=countGroup('opp'),rd=countGroup('rd');
-  const secs=[{l:'VPI',d:vd,t:15},{l:'Int. Eval',d:id,t:7},{l:'Opportunities',d:od,t:18},{l:'Readiness',d:rd,t:8}];
-  document.getElementById('secStatus').innerHTML=secs.map((s,i)=>`
-    <div class="ss-chip">
-      <div class="ss-dot${s.d===s.t?' done':s.d>0?' partial':''}"></div>
-      <span class="ss-txt${s.d===s.t?' done':s.d>0?' partial':''}">${s.l} ${s.d}/${s.t}</span>
-    </div>${i<3?'<span class="ss-sep">›</span>':''}`).join('');
 }
 
 /* ═══════════════════════════════════════════
