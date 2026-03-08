@@ -555,9 +555,6 @@ function countGroup(g){return Object.values(ans[g]).filter(v=>v!=null).length;}
 function updProgress(){
   saveToStorage();
   const vd=countGroup('vpi'),id=countGroup('ie'),od=countGroup('opp'),rd=countGroup('rd');
-  const tot=vd+id+od+rd,pct=Math.round(tot/48*100);
-  document.getElementById('ansFg').style.width=pct+'%';
-  document.getElementById('ansTxt').textContent=tot+' / 48';
   const secs=[{l:'VPI',d:vd,t:15},{l:'Int. Eval',d:id,t:7},{l:'Opportunities',d:od,t:18},{l:'Readiness',d:rd,t:8}];
   document.getElementById('secStatus').innerHTML=secs.map((s,i)=>`
     <div class="ss-chip">
