@@ -166,6 +166,13 @@ input:focus,select:focus{outline:none;border-color:var(--primary);}
 /* ── REPORT FOOTER ── */
 .rep-footer{background:#F7F8FC;border-top:1px solid #e8eaf0;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--g2);}
 
+/* ── GIA LOGO BAR ── */
+.gia-logo-bar{padding:16px 24px;display:flex;justify-content:flex-start;align-items:center;border-top:1px solid #e8eaf0;background:#fff;}
+.gia-logo-bar img{height:240px;}
+/* wizard footer: full-width white band, mirrors wiz-top */
+.gia-logo-wiz{background:white;border-top:2px solid var(--g4);padding:20px 0;}
+.gia-logo-wiz img{display:block;width:100%;max-width:760px;height:auto;margin:0 auto;padding:0 20px;}
+
 
 @media (max-width: 680px) {
   .rep-2col, .grid-2 { grid-template-columns: 1fr; }
@@ -201,12 +208,11 @@ input:focus,select:focus{outline:none;border-color:var(--primary);}
   <div class="step active" id="step-1">
     <div class="step-badge">Step 1 — Organisation</div>
     <h2>Tell us about your organisation</h2>
-    <p class="step-desc">Basic information. Organisation name and industry are required.</p>
+    <p class="step-desc">Basic information. Only organisation name is required.</p>
     <div class="grid-2">
       <div class="fg"><label>Organisation name *</label><input id="f-org" placeholder="e.g. Kalundborg Utility"></div>
-      <div class="fg"><label>Site name</label><input id="f-site" placeholder="e.g. Wastewater Treatment Plant"></div>
       <div class="fg">
-        <label>Industry *</label>
+        <label>Industry</label>
         <select id="f-industry">
           <option value="">— Select —</option>
           <option>Energy and heat production</option><option>Food industry</option>
@@ -216,7 +222,6 @@ input:focus,select:focus{outline:none;border-color:var(--primary);}
           <option>Municipality / Public utility</option><option>Other</option>
         </select>
       </div>
-      <div class="fg"><label>Part of local collaboration</label><input id="f-collab" placeholder="e.g. Kalundborg Symbiosis"></div>
       <div class="fg"><label>City</label><input id="f-city" placeholder="e.g. Kalundborg"></div>
       <div class="fg"><label>Country</label><input id="f-country" placeholder="e.g. Denmark"></div>
     </div>
@@ -263,6 +268,9 @@ input:focus,select:focus{outline:none;border-color:var(--primary);}
     </div>
   </div>
 </div>
+<div class="gia-logo-wiz">
+  <img src="GreenIndustrialAreas_Logo-Standard.svg" alt="Green Industrial Areas">
+</div>
 </div><!-- end wizard -->
 
 <!-- ═══════════ RESULTS ═══════════ -->
@@ -298,6 +306,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);}
       <table class="ci-table" id="r-info"></table>
     </div>
   </div>
+  <div class="gia-logo-bar"><img src="GreenIndustrialAreas_Logo-Standard.svg" alt="Green Industrial Areas"></div>
   </div><!-- /pdf-p1 -->
 
   <div id="pdf-p1-b">
@@ -533,8 +542,8 @@ function updNav(){
 }
 function nextStep(){
   if(step===1){
-    if(!document.getElementById('f-org').value.trim()||!document.getElementById('f-industry').value){
-      const e=document.getElementById('errMsg');e.style.display='';e.textContent='Please enter organisation name and select industry.';return;
+    if(!document.getElementById('f-org').value.trim()){
+      const e=document.getElementById('errMsg');e.style.display='';e.textContent='Please enter organisation name.';return;
     }
   }
   document.getElementById('step-'+step).classList.remove('active');
@@ -623,9 +632,7 @@ function rScores(){
 function rInfo(){
   const rows=[
     ['Organisation',document.getElementById('f-org').value],
-    ['Site',document.getElementById('f-site').value],
     ['Industry',document.getElementById('f-industry').value],
-    ['Collaboration',document.getElementById('f-collab').value],
     ['City',document.getElementById('f-city').value],
     ['Country',document.getElementById('f-country').value]
   ].filter(([,v])=>v);
