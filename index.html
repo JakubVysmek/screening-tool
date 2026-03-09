@@ -917,7 +917,7 @@ function rRD(){
 /* PDF DOWNLOAD */
 async function downloadPDF(){
   const btn=document.getElementById('btnPDF');
-  btn.disabled=true;btn.textContent='⏳ Generating PDF…';
+  btn.disabled=true;btn.textContent='Generating PDF…';
   const actions=document.querySelector('.rep-actions');
   const pdfLogo=document.getElementById('pdf-logo');
   const screenLogo=document.getElementById('screen-logo');
@@ -948,7 +948,7 @@ async function downloadPDF(){
     if(pdfLogo)pdfLogo.style.display='none';
     if(screenLogo)screenLogo.style.display='';
     if(actions)actions.style.visibility='visible';
-    btn.disabled=false;btn.textContent='⬇ Download PDF';
+    btn.disabled=false;btn.textContent='Download PDF';
   }
 }
 
