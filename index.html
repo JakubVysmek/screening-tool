@@ -322,9 +322,13 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
     <div class="wiz-brand-divider"></div>
     <button class="btn-wiz-new" onclick="newScreening()">New screening</button>
   </div>
-  <div class="wiz-step-info">
-    <div class="wiz-step-label">Step</div>
-    <div class="wiz-step-num" id="stepLbl">1 / 5</div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-wiz-new" onclick="nextStep()" id="btnSkip">Skip</button>
+    <div class="wiz-brand-divider"></div>
+    <div class="wiz-step-info">
+      <div class="wiz-step-label">Step</div>
+      <div class="wiz-step-num" id="stepLbl">1 / 5</div>
+    </div>
   </div>
 
 </div>
@@ -664,6 +668,9 @@ function updNav(){
   document.getElementById('btnBack').style.visibility=step>1?'visible':'hidden';
   document.getElementById('btnNext').style.display=step<5?'':'none';
   document.getElementById('btnFinish').style.display=step===5?'':'none';
+  const skip=document.getElementById('btnSkip');
+  skip.style.display='';
+  skip.onclick=step<5?nextStep:showResults;
   document.getElementById('errMsg').style.display='none';
 }
 function nextStep(){
