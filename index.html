@@ -200,23 +200,122 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 .gia-logo-wiz img{display:block;width:100%;max-width:760px;height:auto;margin:0 auto;padding:0 20px;}
 
 
+/* ── LANDING PAGE ── */
+.landing-top{
+  background:var(--primary);padding:0 40px;height:70px;
+  display:flex;align-items:center;
+  border-bottom:3px solid var(--green);
+  position:sticky;top:0;z-index:100;
+}
+.landing-body{max-width:760px;margin:0 auto;padding:36px 24px 0;}
+.landing-hero{text-align:center;padding:28px 0 24px;}
+.landing-hero-title{font-size:26px;font-weight:800;color:var(--primary);margin-bottom:8px;letter-spacing:-.4px;line-height:1.2;}
+.landing-hero-sub{font-size:13px;color:var(--g2);line-height:1.6;max-width:520px;margin:0 auto;}
+.landing-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.landing-card{background:white;border-radius:10px;padding:20px 22px;box-shadow:0 2px 8px rgba(0,0,0,.07);border-top:3px solid var(--green);}
+.landing-card-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--primary);margin-bottom:9px;}
+.landing-card-text{font-size:13px;color:var(--g1);line-height:1.65;}
+.landing-card-text a{color:var(--primary);font-weight:700;text-decoration:none;border-bottom:1px solid var(--green);}
+.landing-card-text a:hover{color:#073a80;}
+.landing-cta{text-align:center;padding:24px 0 28px;}
+.btn-landing-start{background:var(--primary);color:white;padding:13px 48px;border:none;border-radius:7px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.2px;transition:all .15s;}
+.btn-landing-start:hover{background:#073a80;transform:translateY(-2px);box-shadow:0 4px 18px rgba(5,43,99,.28);}
+.landing-privacy{background:#F7F8FC;border-top:1px solid #e8eaf0;padding:18px 24px;max-width:760px;margin:0 auto;}
+.landing-imprint{background:#F7F8FC;border-top:1px solid #e8eaf0;padding:18px 24px;max-width:760px;margin:0 auto;}
+.landing-privacy-title,.landing-imprint-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--g1);margin-bottom:8px;}
+.landing-privacy-text,.landing-imprint-text{font-size:11px;color:var(--g2);line-height:1.8;}
+.landing-privacy-text a,.landing-imprint-text a{color:var(--g1);text-decoration:none;border-bottom:1px solid var(--g4);}
+.landing-privacy-text a:hover,.landing-imprint-text a:hover{color:#222;}
+
 @media (max-width: 680px) {
-  .rep-2col, .grid-2 { grid-template-columns: 1fr; }
+  .rep-2col, .grid-2, .landing-cards { grid-template-columns: 1fr; }
   .bar-lbl { width: 120px; font-size: 10px; }
   .score-strip { flex-wrap: wrap; }
   .sc { min-width: 45%; }
+  .landing-top { padding: 0 20px; }
 }
 </style>
 </head>
 <body>
 
+<!-- ═══════════ LANDING PAGE ═══════════ -->
+<div id="landing">
+
+<div class="landing-top">
+  <div class="wiz-brand">
+    <div class="wiz-brand-mark"></div>
+    <div class="wiz-brand-text">
+      <div class="wiz-brand-sub">Green Industrial Areas</div>
+      <div class="wiz-brand-main">Business Screening Tool</div>
+    </div>
+  </div>
+</div>
+
+<div class="landing-body">
+
+  <div class="landing-hero">
+    <h2 class="landing-hero-title">Green Business Screening Tool</h2>
+    <p class="landing-hero-sub">A self-assessment for businesses exploring green industrial collaboration. Takes 10–15 minutes, no account required.</p>
+  </div>
+
+  <div class="landing-cards">
+    <div class="landing-card">
+      <div class="landing-card-title">About</div>
+      <div class="landing-card-text">
+        Part of the <a href="https://interreg-baltic.eu/project/greenindustrialareas/" target="_blank" rel="noopener">GreenIndustrialAreas</a> Interreg Baltic Sea Region project, developed by <strong>Kalundborg Symbiosis</strong>.
+      </div>
+    </div>
+    <div class="landing-card">
+      <div class="landing-card-title">What to Prepare</div>
+      <div class="landing-card-text">
+        Have a general sense of your energy, water and material flows and your organisation's green priorities. You'll receive a downloadable PDF report.
+      </div>
+    </div>
+  </div>
+
+  <div class="landing-cta">
+    <button class="btn-landing-start" onclick="startScreening()">Start Screening</button>
+  </div>
+
+</div><!-- /landing-body -->
+
+<!-- Privacy -->
+<div class="landing-privacy">
+  <div class="landing-privacy-title">Privacy &amp; Data Protection</div>
+  <div class="landing-privacy-text">
+    <strong>GDPR compliant.</strong> This tool runs entirely in your browser — no answers, scores, or personal data are ever transmitted to any server or third party.
+    Your responses are saved only to your browser's localStorage so you can return to the questionnaire; this data never leaves your device.
+    Hosted on <strong>GitHub Pages</strong>. GitHub may collect standard server access logs as per their
+    <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacy statement</a>, but no additional tracking or analytics are applied by this tool.
+  </div>
+</div>
+
+<!-- Imprint -->
+<div class="landing-imprint">
+  <div class="landing-imprint-title">Imprint</div>
+  <div class="landing-imprint-text">
+    <strong>Responsible for content:</strong> Kalundborg Symbiosis · Campus Kalundborg 3 · DK-4400 Kalundborg · Denmark ·
+    <a href="https://www.symbiosis.dk/en/" target="_blank" rel="noopener">www.symbiosis.dk</a><br>
+    <strong>Project:</strong> GreenIndustrialAreas — co-funded by the European Union through the Interreg Baltic Sea Region Programme 2021–2027.
+    The views expressed are those of the project partners and do not necessarily reflect the position of the European Union.<br>
+    <strong>Hosting:</strong> GitHub Pages (Microsoft GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).
+  </div>
+</div>
+
+<!-- Logo bar — same as wizard and report -->
+<div class="gia-logo-wiz">
+  <img src="GreenIndustrialAreas_Logo-Standard.svg" alt="Green Industrial Areas — Interreg Baltic Sea Region">
+</div>
+
+</div><!-- end landing -->
+
 <!-- ═══════════ WIZARD ═══════════ -->
-<div id="wizard">
+<div id="wizard" style="display:none;">
 
 <div class="wiz-top">
   <div class="wiz-brand">
     <div class="wiz-brand-mark"></div>
-    <div class="wiz-brand-text">
+    <div class="wiz-brand-text" onclick="goToLanding()" style="cursor:pointer;">
       <div class="wiz-brand-sub">Green Industrial Areas</div>
       <div class="wiz-brand-main">Business Screening Tool</div>
     </div>
@@ -883,6 +982,22 @@ function loadFromStorage(){
   }catch(e){}
 }
 
+function startScreening(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('wizard').style.display='block';
+  step=1;
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step-1').classList.add('active');
+  updNav();window.scrollTo(0,0);
+}
+
+function goToLanding(){
+  document.getElementById('wizard').style.display='none';
+  document.getElementById('results').style.display='none';
+  document.getElementById('landing').style.display='block';
+  window.scrollTo(0,0);
+}
+
 function newScreening(){
   if(!confirm('Start a new screening? All current answers will be cleared.'))return;
   localStorage.removeItem(STORAGE_KEY);
@@ -892,7 +1007,8 @@ function newScreening(){
   });
   document.querySelectorAll('.qb').forEach(b=>b.classList.remove('on'));
   document.getElementById('results').style.display='none';
-  document.getElementById('wizard').style.display='block';
+  document.getElementById('wizard').style.display='none';
+  document.getElementById('landing').style.display='block';
   step=1;
   document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
   document.getElementById('step-1').classList.add('active');
