@@ -126,6 +126,10 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 /* ── REPORT SECTION ── */
 .rep-section{border-bottom:1px solid #e8eaf0;}
 .rep-section:last-child{border-bottom:none;}
+.sec-emoji{display:none;}
+.pdf-mode .sec-emoji{display:inline;}
+#results>[id^="pdf-p"]+[id^="pdf-p"]{margin-top:28px;border-top:3px solid var(--g4);}
+.pdf-mode [id^="pdf-p"]+[id^="pdf-p"]{margin-top:0;border-top:none;}
 .rep-sec-title{
   background:#F7F8FC;color:var(--primary);
   padding:9px 18px;font-size:11px;font-weight:800;
@@ -430,7 +434,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 
   <!-- SECTION 1: COMPANY -->
   <div class="rep-section">
-    <div class="rep-sec-title">🏭 Organisation Profile</div>
+    <div class="rep-sec-title"><span class="sec-emoji">🏭 </span>Organisation Profile</div>
     <div class="rep-sec-body">
       <table class="ci-table" id="r-info"></table>
     </div>
@@ -441,7 +445,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 
   <!-- SECTION 2: VPI -->
   <div class="rep-section">
-    <div class="rep-sec-title">📊 Value Proposition Index (VPI)</div>
+    <div class="rep-sec-title"><span class="sec-emoji">📊 </span>Value Proposition Index (VPI)</div>
     <div class="rep-sec-body">
       <div class="completion-row">
         <span id="r-vpi-completion"></span>
@@ -469,7 +473,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 
   <!-- SECTION 3: INTERNAL EVAL -->
   <div class="rep-section">
-    <div class="rep-sec-title">🔍 Internal Evaluation — Resource Significance</div>
+    <div class="rep-sec-title"><span class="sec-emoji">🔍 </span>Internal Evaluation — Resource Significance</div>
     <div class="rep-sec-body">
       <div class="completion-row">
         <span id="r-ie-completion"></span>
@@ -490,7 +494,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
   <div id="pdf-p2">
 
   <div class="rep-section">
-    <div class="rep-sec-title">💡 Symbiosis Opportunities</div>
+    <div class="rep-sec-title"><span class="sec-emoji">💡 </span>Symbiosis Opportunities</div>
     <div class="rep-sec-body">
       <div class="completion-row">
         <span id="r-opp-completion"></span>
@@ -510,7 +514,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
   <div id="pdf-p3">
 
   <div class="rep-section">
-    <div class="rep-sec-title">🚀 Readiness for Green Collaboration</div>
+    <div class="rep-sec-title"><span class="sec-emoji">🚀 </span>Readiness for Green Collaboration</div>
     <div class="rep-sec-body">
       <div class="completion-row">
         <span id="r-rd-completion"></span>
@@ -912,6 +916,7 @@ async function downloadPDF(){
   // swap logos: show PDF version, hide screen version
   if(pdfLogo)pdfLogo.style.display='';
   if(screenLogo)screenLogo.style.display='none';
+  document.body.classList.add('pdf-mode');
   try{
     const {jsPDF}=window.jspdf;
     const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
@@ -931,6 +936,7 @@ async function downloadPDF(){
     const org=document.getElementById('f-org').value.trim()||'report';
     pdf.save(`green-screening-${org.replace(/\s+/g,'-').toLowerCase()}.pdf`);
   }finally{
+    document.body.classList.remove('pdf-mode');
     if(pdfLogo)pdfLogo.style.display='none';
     if(screenLogo)screenLogo.style.display='';
     if(actions)actions.style.visibility='visible';
