@@ -341,7 +341,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
     <h2>Tell us about your organisation</h2>
     <p class="step-desc">Basic information. Only organisation name is required.</p>
     <div class="grid-2">
-      <div class="fg"><label>Organisation name *</label><input id="f-org" placeholder="e.g. Kalundborg Utility"></div>
+      <div class="fg"><label>Organisation name</label><input id="f-org" placeholder="e.g. Kalundborg Utility"></div>
       <div class="fg">
         <label>Industry</label>
         <select id="f-industry">
@@ -674,11 +674,7 @@ function updNav(){
   document.getElementById('errMsg').style.display='none';
 }
 function nextStep(){
-  if(step===1){
-    if(!document.getElementById('f-org').value.trim()){
-      const e=document.getElementById('errMsg');e.style.display='';e.textContent='Please enter organisation name.';return;
-    }
-  }
+
   document.getElementById('step-'+step).classList.remove('active');
   step++;document.getElementById('step-'+step).classList.add('active');
   updNav();window.scrollTo(0,0);
