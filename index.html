@@ -130,7 +130,6 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 .rep-section{border-bottom:1px solid #e8eaf0;}
 .rep-section:last-child{border-bottom:none;}
 .sec-emoji{display:none;}
-.pdf-mode .sec-emoji{display:inline;}
 #results>[id^="pdf-p"]+[id^="pdf-p"]{margin-top:28px;border-top:3px solid var(--g4);}
 .pdf-mode [id^="pdf-p"]+[id^="pdf-p"]{margin-top:0;border-top:none;}
 .rep-sec-title{
@@ -634,7 +633,13 @@ function makeQ(text,group,key,labels,vals,cont){
   labels.forEach((lbl,li)=>{
     const v=vals[li],btn=document.createElement('button');
     btn.type='button';btn.className='qb';btn.dataset.v=v;btn.textContent=lbl;
-    btn.onclick=()=>{el.querySelectorAll('.qb').forEach(x=>x.classList.remove('on'));btn.classList.add('on');ans[group][key]=v;updProgress();};
+    btn.onclick=()=>{
+      const already=btn.classList.contains('on');
+      el.querySelectorAll('.qb').forEach(x=>x.classList.remove('on'));
+      if(!already){btn.classList.add('on');ans[group][key]=v;}
+      else{delete ans[group][key];}
+      updProgress();
+    };
     el.appendChild(btn);
   });
 }
