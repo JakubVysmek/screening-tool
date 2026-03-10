@@ -233,8 +233,27 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 .landing-privacy-text a,.landing-imprint-text a{color:var(--g1);text-decoration:none;border-bottom:1px solid var(--g4);}
 .landing-privacy-text a:hover,.landing-imprint-text a:hover{color:#222;}
 
+/* ── CONTACTS PAGE ── */
+.contacts-body{max-width:760px;margin:0 auto;padding:36px 24px 0;}
+.contacts-hero{text-align:center;padding:28px 0 24px;}
+.contacts-hero-title{font-size:22px;font-weight:800;color:var(--primary);margin-bottom:8px;letter-spacing:-.3px;}
+.contacts-hero-sub{font-size:13px;color:var(--g2);line-height:1.65;max-width:520px;margin:0 auto;}
+.contacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
+.contact-card{background:white;border-radius:8px;padding:14px 16px;cursor:pointer;border:2px solid transparent;box-shadow:0 1px 5px rgba(0,0,0,.06);display:flex;align-items:center;gap:12px;transition:border-color .12s,background .12s;user-select:none;}
+.contact-card:hover{border-color:var(--g4);}
+.contact-card.selected{border-color:var(--green);background:#f0f8f1;}
+.contact-check{width:18px;height:18px;border-radius:4px;border:2px solid var(--g4);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .12s;}
+.contact-card.selected .contact-check{background:var(--green);border-color:var(--green);}
+.contact-check svg{opacity:0;transition:opacity .12s;}
+.contact-card.selected .contact-check svg{opacity:1;}
+.contact-name{font-size:12.5px;font-weight:700;color:#222;line-height:1.3;margin-bottom:2px;}
+.contact-country{font-size:11px;color:var(--g2);}
+.contacts-cta{text-align:center;padding:4px 0 32px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.btn-contacts-skip{background:none;border:none;font-size:12px;color:var(--g2);cursor:pointer;padding:4px 8px;font-family:inherit;}
+.btn-contacts-skip:hover{color:var(--g1);}
+
 @media (max-width: 680px) {
-  .rep-2col, .grid-2, .landing-cards { grid-template-columns: 1fr; }
+  .rep-2col, .grid-2, .landing-cards, .contacts-grid { grid-template-columns: 1fr; }
   .bar-lbl { width: 120px; font-size: 10px; }
   .score-strip { flex-wrap: wrap; }
   .sc { min-width: 45%; }
@@ -314,6 +333,79 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 </div>
 
 </div><!-- end landing -->
+
+<!-- ═══════════ CONTACTS PAGE ═══════════ -->
+<div id="contacts" style="display:none;">
+
+<div class="wiz-top">
+  <div class="wiz-brand">
+    <div class="wiz-brand-mark"></div>
+    <div class="wiz-brand-text" onclick="goToLanding()" style="cursor:pointer;">
+      <div class="wiz-brand-sub">Green Industrial Areas</div>
+      <div class="wiz-brand-main">Screening Tool</div>
+    </div>
+    <div class="wiz-brand-divider"></div>
+    <button class="btn-wiz-new" onclick="newScreening()">New screening</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-wiz-new" onclick="continueToScreening()">Skip</button>
+    <div class="wiz-brand-divider"></div>
+    <div class="wiz-step-info">
+      <div class="wiz-step-label">Step</div>
+      <div class="wiz-step-num">0 / 5</div>
+    </div>
+  </div>
+</div>
+<div class="step-prog"><div class="step-prog-fill" style="width:0%"></div></div>
+
+<div class="contacts-body">
+  <div class="contacts-hero">
+    <h2 class="contacts-hero-title">Share your report with a project partner</h2>
+    <p class="contacts-hero-sub">Select one or more GreenIndustrialAreas project partners you'd like to share your completed assessment with. You can also proceed without selecting anyone.</p>
+  </div>
+
+  <div class="contacts-grid">
+    <div class="contact-card" id="cc-1" onclick="toggleContact(1)">
+      <div class="contact-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="contact-name">Kalundborg Symbiosis</div><div class="contact-country">Denmark</div></div>
+    </div>
+    <div class="contact-card" id="cc-2" onclick="toggleContact(2)">
+      <div class="contact-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="contact-name">Sustainable Business Hub Scandinavia</div><div class="contact-country">Sweden</div></div>
+    </div>
+    <div class="contact-card" id="cc-3" onclick="toggleContact(3)">
+      <div class="contact-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="contact-name">Ministry of Economy, Infrastructure, Tourism and Labour Mecklenburg-Vorpommern</div><div class="contact-country">Germany</div></div>
+    </div>
+    <div class="contact-card" id="cc-4" onclick="toggleContact(4)">
+      <div class="contact-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="contact-name">Podlaska Regional Development Foundation</div><div class="contact-country">Poland</div></div>
+    </div>
+    <div class="contact-card" id="cc-5" onclick="toggleContact(5)">
+      <div class="contact-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="contact-name">Lithuanian Innovation Centre</div><div class="contact-country">Lithuania</div></div>
+    </div>
+    <div class="contact-card" id="cc-6" onclick="toggleContact(6)">
+      <div class="contact-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="contact-name">Regional Council of Central Finland</div><div class="contact-country">Finland</div></div>
+    </div>
+    <div class="contact-card" id="cc-7" onclick="toggleContact(7)">
+      <div class="contact-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="contact-name">Zemgale Planning Region</div><div class="contact-country">Latvia</div></div>
+    </div>
+  </div>
+
+  <div class="contacts-cta">
+    <button class="btn-landing-start" onclick="continueToScreening()">Continue to Screening</button>
+    <button class="btn-contacts-skip" onclick="continueToScreening()">Skip</button>
+  </div>
+</div>
+
+<div class="gia-logo-wiz">
+  <img src="GreenIndustrialAreas_Logo-Standard.svg" alt="Green Industrial Areas — Interreg Baltic Sea Region">
+</div>
+
+</div><!-- end contacts -->
 
 <!-- ═══════════ WIZARD ═══════════ -->
 <div id="wizard" style="display:none;">
@@ -677,7 +769,9 @@ function updProgress(){
 function updNav(){
   document.getElementById('stepFg').style.width=(step/5*100)+'%';
   document.getElementById('stepLbl').textContent=`${step} / 5`;
-  document.getElementById('btnBack').style.visibility=step>1?'visible':'hidden';
+  const btnBack=document.getElementById('btnBack');
+  btnBack.style.visibility='visible';
+  btnBack.onclick=step>1?prevStep:goToContacts;
   document.getElementById('btnNext').style.display=step<5?'':'none';
   document.getElementById('btnFinish').style.display=step===5?'':'none';
   const skip=document.getElementById('btnSkip');
@@ -1002,8 +1096,36 @@ function loadFromStorage(){
   }catch(e){}
 }
 
+const CONTACTS=[
+  {id:1,name:'Kalundborg Symbiosis',country:'Denmark',email:'symbiosecenter@kalundborg.dk'},
+  {id:2,name:'Sustainable Business Hub Scandinavia',country:'Sweden',email:'communication@sbhub.se'},
+  {id:3,name:'Ministry of Economy, Infrastructure, Tourism and Labour Mecklenburg-Vorpommern',country:'Germany',email:'gruene.gewerbegebiete@wm.mv-regierung.de'},
+  {id:4,name:'Podlaska Regional Development Foundation',country:'Poland',email:'fundacja@pfrr.pl'},
+  {id:5,name:'Lithuanian Innovation Centre',country:'Lithuania',email:'lic@lic.lt'},
+  {id:6,name:'Regional Council of Central Finland',country:'Finland',email:'kirjaamo@keski-suomi.fi'},
+  {id:7,name:'Zemgale Planning Region',country:'Latvia',email:'zpr@zpr.gov.lv'},
+];
+let selectedContacts=new Set();
+
+function toggleContact(id){
+  selectedContacts.has(id)?selectedContacts.delete(id):selectedContacts.add(id);
+  document.getElementById('cc-'+id).classList.toggle('selected',selectedContacts.has(id));
+}
+
 function startScreening(){
   document.getElementById('landing').style.display='none';
+  document.getElementById('contacts').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function goToContacts(){
+  document.getElementById('wizard').style.display='none';
+  document.getElementById('contacts').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function continueToScreening(){
+  document.getElementById('contacts').style.display='none';
   document.getElementById('wizard').style.display='block';
   step=1;
   document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
@@ -1014,6 +1136,7 @@ function startScreening(){
 function goToLanding(){
   document.getElementById('wizard').style.display='none';
   document.getElementById('results').style.display='none';
+  document.getElementById('contacts').style.display='none';
   document.getElementById('landing').style.display='block';
   window.scrollTo(0,0);
 }
@@ -1026,8 +1149,11 @@ function newScreening(){
     const el=document.getElementById(id);if(el)el.value='';
   });
   document.querySelectorAll('.qb').forEach(b=>b.classList.remove('on'));
+  selectedContacts.clear();
+  CONTACTS.forEach(c=>document.getElementById('cc-'+c.id).classList.remove('selected'));
   document.getElementById('results').style.display='none';
   document.getElementById('wizard').style.display='none';
+  document.getElementById('contacts').style.display='none';
   document.getElementById('landing').style.display='block';
   step=1;
   document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
