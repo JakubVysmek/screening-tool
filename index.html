@@ -561,6 +561,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
         <span id="r-vpi-completion"></span>
         <div class="completion-track"><div class="completion-fill" id="r-vpi-cbar"></div></div>
       </div>
+      <div id="r-vpi-warn" style="display:none;font-size:11px;color:#b45309;margin-top:6px;margin-bottom:14px;">Unanswered questions are counted as 0 and reduce the Motivation Index score.</div>
       <div class="rep-2col">
         <div>
           <div style="font-size:10px;font-weight:800;color:var(--g2);text-transform:uppercase;margin-bottom:8px;">All 15 dimensions rated 1–5</div>
@@ -903,6 +904,7 @@ function rVPI(){
   const pct=Math.round(cnt/15*100);
   document.getElementById('r-vpi-completion').textContent=`${cnt} / 15 questions answered`;
   document.getElementById('r-vpi-cbar').style.width=pct+'%';
+  document.getElementById('r-vpi-warn').style.display=cnt<15?'':'none';
 
   VPI_Q.forEach((q,i)=>{
     const v=vals[i];const pct2=v>0?(v/5)*100:0;
